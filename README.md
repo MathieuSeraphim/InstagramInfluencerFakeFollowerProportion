@@ -14,8 +14,10 @@ I will be using different tools than them, mainly because I will develop my prog
 ## The plan:
 
 1 - Scrap and process data from public and private Instagram accounts.
+
 2 - Extract data from 500 accounts and manually label them real or fake.
         The number "500" was arbitrarily chosen, and might not be enough to provide good results. But manual labeling being time-consuming, the number couldn't be too high.
+
 3 - Train a classification ML algorithm to detect fake accounts. Tweak hyperparameters for optimal results.
 4 - Repeat for multiple other classification algorithms, and keep the best performing.
 5 - Determine the fake follower proportion of a few Instagram influencers. Compare the obtained values with data from articles found online (such as this one: https://www.meltwater.com/uk/blog/influencer-fraud/).
