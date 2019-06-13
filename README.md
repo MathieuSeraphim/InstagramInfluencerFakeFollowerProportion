@@ -1,6 +1,8 @@
 # InstagramInfluencerFakeFollowerProportion
 Project dedicated to determine the "fake" follower proportion of any given Instagram influencer.
-June 2019
+
+This program is primarily an exercise, not a serious project. As such, the different parts of this README will correspond to chronological steps, and a method used in a specific step may be found to have been less than optimal in a later step.
+All this will be reported in the "chronological step" where it was discovered
 
 ## The idea:
 
@@ -11,7 +13,7 @@ In either case, the result is the same: a significant number of the influencer's
 I aim to create a classification tool able to give the proportion of these "fake" followers, for any given Instagram influencer, by replicating and adapting the process made by journalists of the swiss media group SRF (https://srfdata.github.io/2017-10-instagram-influencers/).
 I will be using different tools than them, mainly because I will develop my program in Python, while they used the R programming language.
 
-## The plan:
+## The original plan:
 
 1. Scrape and process data from public and private Instagram accounts.
 2. Extract data from 500 accounts and manually label them real or fake.
@@ -21,11 +23,13 @@ I will be using different tools than them, mainly because I will develop my prog
 5. Determine the fake follower proportion of a few Instagram influencers. Compare the obtained values with data from articles found online (such as this one: https://www.meltwater.com/uk/blog/influencer-fraud/).
 6. If needed, wrap all this in one easy-to-use program.
 
-## The scraper
+## The collection of Instagram data
 
 This part is divided into multiple classes:
 
-### InstagramDataScraper
+### Scraping the metadata of a given Instagram account, public or private
+
+This is done using the InstagramDataScraper class of the scraper module.
 
 Given an instagram user's ID, the getInfo method returns an array of information on said user.
 The array contains:
@@ -42,3 +46,13 @@ The array contains:
 * The user's follower-to-number of posts ratio - Floating point number, may be infinite
 
 The data is obtained by parsing the Instagram source code. If the source code format changes significantly compared to the current format at the time of writing, this class may not function anymore.
+
+### Collecting and processing follower data
+
+To extract a list of Instagram followers for a given public account, I used the Google Chrome extension "Helper Tools for Instagram" (HTfI, https://chrome.google.com/webstore/detail/helper-tools-for-instagra/hcdbfckhdcpepllecbkaaojfgipnpbpb).
+
+This extension needs an Instagram account to function, and is only usable through the browser, limiting automation. It can, however, provide all the information that is scraped through the InstagramDaraScraper class, rendering it mostly useless.
+
+I have decided to not extract too much data with the HTfI extension, and to keep using the InstagramDataScraper class for most of the work. If this project is to be integrated into a real product, I would advise to find an alternative to both these tools usable through Python, or another programming language.
+
+The extracted data can be found in the extracted_data folder, and through execution of the preprocess_followers.py script, new .csv files will appear in the processed_data folder..
