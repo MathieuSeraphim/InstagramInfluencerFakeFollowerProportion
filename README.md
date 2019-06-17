@@ -55,4 +55,14 @@ This extension needs an Instagram account to function, and is only usable throug
 
 I have decided to not extract too much data with the HTfI extension, and to keep using the InstagramDataScraper class for most of the work. If this project is to be integrated into a real product, I would advise to find an alternative to both these tools usable through Python, or another programming language.
 
-The extracted data can be found in the extracted_data folder, and through execution of the preprocess_followers.py script, new .csv files will appear in the processed_data folder..
+The extracted data can be found in the extracted_data folder, and through execution of the preprocess_followers.py script, new .csv files will appear in the processed_data folder.
+
+Notice that some of the processed files have few or no corresponding Instagram accounts. That is because the data scraper didn't work on them. possibly, in the few minuted between collecting the data and processing it, some of these these accounts were deleted.
+However, I have tried searching manually for some of these users, and have found that they were not deleted. I do not know why the program bugged in their case.
+
+This gives further weight to the point that my collecting / preprocessing method needs improving, as we probably lost a lot of good examples of fake accounts.
+
+After having collected the data, I labeled it manually and exported it to the labeled_data.csv file, using the label_examples.py script.
+I automatically labeled the few deleted accounts I encountered as fake.
+
+Note that this process was highly subjective, and I probably mislabeled many users.
