@@ -77,7 +77,7 @@ Testing has shown that it is the single most important hyperparameter, giving co
 
 Using this, I obtain an accuracy score of around 0.8 to 0.9, showing that I was somewhat consistent in my labeling.
 
-I then process the Ritz-Carlton data using this model, which shows me a proportion of fake accounts of 0.20 - 0.21, which is nowhere near the o.78 I have found online (see point 5 of original plan, above).
+I then process the Ritz-Carlton data using this model, which shows me a proportion of fake accounts of 0.20 - 0.21, which is nowhere near the 0.78 I have found online (see point 5 of original plan, above).
 
 There are multiple possible reasons for that:
 * Although my labeling was consistent, it wasn't necessarily accurate: as stated above, I am biased in my decision process, and I may have consistently mislabeled accounts.
