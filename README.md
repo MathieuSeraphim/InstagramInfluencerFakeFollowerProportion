@@ -1,4 +1,4 @@
-# InstagramInfluencerFakeFollowerProportion
+# InstagramInfluencerFakeFollowerProportion Project
 Project dedicated to determine the "fake" follower proportion of any given Instagram influencer.
 
 This program is primarily an exercise, not a serious project. As such, the different parts of this README will correspond to chronological steps, and a method used in a specific step may be found to have been less than optimal in a later step.
@@ -57,12 +57,33 @@ I have decided to not extract too much data with the HTfI extension, and to keep
 
 The extracted data can be found in the extracted_data folder, and through execution of the preprocess_followers.py script, new .csv files will appear in the processed_data folder.
 
-Notice that some of the processed files have few or no corresponding Instagram accounts. That is because the data scraper didn't work on them. possibly, in the few minuted between collecting the data and processing it, some of these these accounts were deleted.
-However, I have tried searching manually for some of these users, and have found that they were not deleted. I do not know why the program bugged in their case.
+Notice that some of the processed files have few or no corresponding Instagram accounts. That is because the data scraper didn't work on them. One interpretation would be that in the few minutes between collecting the data and processing it, some of these these accounts were deleted.
+However, I have tried searching manually for some of these users, and have found that they were not deleted. The "deleted accounts" hypothesis seemed to not hold up for the most part.
 
 This gives further weight to the point that my collecting / preprocessing method needs improving, as we probably lost a lot of good examples of fake accounts.
 
 After having collected the data, I labeled it manually and exported it to the labeled_data.csv file, using the label_examples.py script.
-I automatically labeled the few deleted accounts I encountered as fake.
+I automatically labeled the one deleted account I encountered as fake.
 
-Note that this process was highly subjective, and I probably mislabeled many users.
+Note that this process was highly subjective, and by definition biased. More on that later.
+
+Finally, I collected data on about 10000 followers of the Ritz-Carlton. I initially encountered the same problem as before, with the scraper generating errors for a lot of accounts at a time.
+I found out that by imposing a 2-minute timeout after each scraper error, I could greatly limit further errors.
+
+### Implementing the Random Forest algorithm
+
+The Random Forest algorithm is implemented in the random_forest.py script, which takes into account the number of trees to implement.
+Testing has shown that it is the single most important hyperparameter, giving consistent results when above 100. I arbitrarily set it to 500 for most of y tests.
+
+Using this, I obtain an accuracy score of around 0.8 to 0.9, showing that I was somewhat consistent in my labeling.
+
+I then process the Ritz-Carlton data using this model, which shows me a proportion of fake accounts of 0.20 - 0.21, which is nowhere near the o.78 I have found online (see point 5 of original plan, above).
+
+There are multiple possible reasons for that:
+* Although my labeling was consistent, it wasn't necessarily accurate: as stated above, I am biased in my decision process, and I may have consistently mislabeled accounts.
+* The data on the article wasn't necessarily accurate, although I find that unlikely (data provided by the company Points North Group).
+* The data in the article may be outdated, as it dates back to March 2018, and this analysis was done in June 2019.
+
+Finally, even if I'm able to pinpoint fake Instagram followers, that doesn't mean that legitimate Instagram users don't share similar characteristics. For example, a user may have few to no posts, few followers and many followings because they use Instagram quasi-exclusively to check up on influencers, and not to make posts on their own.
+
+We could probably go past this problem if we had more data, such as the user's location, average connection time, ...
